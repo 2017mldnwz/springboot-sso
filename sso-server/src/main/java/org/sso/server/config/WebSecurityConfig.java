@@ -18,17 +18,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 	        // 必须配置，不然OAuth2的http配置不生效----不明觉厉
 	        .requestMatchers()
-	        .antMatchers("/zidingyi", "/login", "/oauth/authorize")
+	        .antMatchers("/zidingyi", "/server/login", "/oauth/authorize")
 	        .and()
 	        .authorizeRequests()
 	        // 自定义页面或处理url是，如果不配置全局允许，浏览器会提示服务器将页面转发多次
-	        .antMatchers("/zidingyi", "/login").permitAll()
+	        .antMatchers("/zidingyi", "/server/login").permitAll()
 	        .anyRequest()
 	        .authenticated();
 
         http.formLogin()
         		.loginPage("/zidingyi")
-        		.loginProcessingUrl("/login") // 处理表单登录 URL
+        		.loginProcessingUrl("/server/login") // 处理表单登录 URL
         		.and().csrf().disable();
     }
 	
